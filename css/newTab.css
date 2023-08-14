@@ -1,0 +1,97 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  background: url('../images/base-wallpaper.jpeg') no-repeat;
+  background-size: cover;
+}
+
+.search {
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-form {
+    max-width: 575px;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    border-radius: 30px;
+    border: 1px solid #dcdcdc;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.search-form:hover{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+
+.search-form:focus-within{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+  outline:none;
+}
+
+.searchbar{
+  height:45px;
+  border:none;
+  max-width:500px;
+  width: 100%;
+  font-size:16px;
+  outline: none;
+}
+
+.search-button {
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+  position:relative;
+  top: 0;
+  left: 10px;
+  outline: none;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+}
+
+.search-button:hover {
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+
+.search-icon {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* DIALS */
+
+.dials {
+  padding: 100px;
+}
+
+.dial {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dial:hover {
+  box-shadow: 1px 1px 8px 1px #e8e9;
+}
+
+.dial-img {
+  width: 80%;
+}
