@@ -3,7 +3,7 @@ let db = null;
 const liveStartData = {
   url: 'https://www.livestartpage.com',
   logo: 'images/LiveStart/logo.png',
-  title: 'Live Start'
+  title: 'Live Start Page'
 };
 
 function insertToDB(dial) {
@@ -64,7 +64,6 @@ function connectToDB() {
 }
 
 function getDials(url) {
-  console.log(db);
   if (!db) return;
 
   const get_transaction = db.transaction("dials", "readonly");
@@ -138,7 +137,6 @@ chrome.runtime.onMessage.addListener((request) => {
   if (request.message === 'getDials') {
     connectToDB().then(() => {
       getDials()?.then((res) => {
-        console.log('GET DIALS REQUESTED');
         chrome.runtime.sendMessage({
           message: 'get_dials_success',
           payload: res
