@@ -76,14 +76,14 @@ function getDials(url) {
   });
 }
 
-function updateDial(url, dial) {
+function updateDial(dial) {
   if (!db) return;
 
   const put_transaction = db.transaction("dials", "readwrite");
   const objectStore = put_transaction.objectStore("dials");
 
   return new Promise((resolve, reject) => {
-    const request = objectStore.get(url);
+    const request = objectStore.get(dial.url);
     
     request.onsuccess = () => {
       objectStore.put(dial);
@@ -143,5 +143,9 @@ chrome.runtime.onMessage.addListener((request) => {
         });
       });
     });
+  }
+
+  if (request.message === 'addDial') {
+    updateDial(request.payload);
   }
 });

@@ -14,5 +14,6 @@
     "tabs",
     "activeTab",
     "storage"
-  ]
+  ],
+  "host_permissions": ["*://*/*", "*://*.besticon-demo.herokuapp.com/*"]
 }

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New custom tab</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
   <link rel="stylesheet" href="css/newTab.css">
 </head>
 <body>
@@ -15,10 +16,37 @@
       </form>
     </div>
 
-    <div id="dials" class="dials">
-        <!-- <div class="dial">
-          <img alt="Live Start Logo" src="images/LiveStart/logo.png" class="dial-img" title="Live Start" />
-        </div> -->
+    <div class="dials-wrapper">
+        <div id="dials" class="dials"></div>
+        <div class="add-dial">
+            <img alt="" src="images/add-icon.png" class="dial-img" />
+        </div>
+    </div>
+
+    <div class="new-dial-form-wrapper">
+      <div class="new-dial-form">
+
+        <div class="input-wrapper">
+          <label for="#website-title" class="label">Title</label>
+          <input id="website-title" name="title" class="new-dial-form-input" />
+          <p class="field-error-label">Field shouldn`t be an empty</p>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="#website-url" class="label">URL</label>
+          <input 
+            id="website-url"
+            name="url"
+            class="new-dial-form-input"
+          />
+          <p class="url-format-error">Wrong url format</p>
+        </div>
+
+        <div class="new-dial-form-actions">
+          <button id="new-dial-form-cancel">Cancel</button>
+          <button id="new-dial-form-save">Save</button>
+        </div>
+      </div>
     </div>
   </div>
 

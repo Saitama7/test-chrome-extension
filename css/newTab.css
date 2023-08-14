@@ -3,6 +3,10 @@ html, body {
   padding: 0;
 }
 
+* {
+  font-family: Roboto, sans-serif;
+}
+
 .wrapper {
   width: 100vw;
   min-height: 100vh;
@@ -73,11 +77,16 @@ html, body {
 
 /* DIALS */
 
-.dials {
+.dials-wrapper {
   padding: 100px;
+  display: flex;
 }
 
-.dial {
+.dials {
+  display: flex;
+}
+
+.dial, .add-dial {
   width: 50px;
   height: 50px;
   border: 1px solid #eee;
@@ -86,6 +95,7 @@ html, body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-right: 50px;
 }
 
 .dial:hover {
@@ -95,4 +105,52 @@ html, body {
 .dial-img {
   width: 80%;
   pointer-events: none;
+}
+
+/* NEW DIAL FORM */
+.new-dial-form-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.active {
+  display: flex;
+}
+
+.new-dial-form {
+  width: 300px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 8px 1px rgb(118, 105, 232);
+}
+
+.input-wrapper {
+  margin-bottom: 20px;
+}
+
+.field-error {
+  border-color: red;
+  color: red;
+}
+
+.url-format-error, .field-error-label {
+  display: none;
+  font-size: 16px;
+  color: red;
+}
+
+.active-error {
+  display: block;
 }
