@@ -2,7 +2,7 @@ const GA_ENDPOINT = 'https://www.google-analytics.com/mp/collect';
 const GA_DEBUG_ENDPOINT = 'https://www.google-analytics.com/debug/mp/collect';
 
 const MEASUREMENT_ID = 'G-3YXME2HPDH';
-const API_SECRET = '<api_secret>';
+const API_SECRET = '<api_secret>'; // sending events without this param. Documentation says required param. Anyway getting 204 response status
 const DEFAULT_ENGAGEMENT_TIME_MSEC = 100;
 
 const SESSION_EXPIRATION_IN_MIN = 30;

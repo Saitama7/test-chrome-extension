@@ -8,6 +8,9 @@ const urlPattern = /(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2
 const Analytics = new GAnalytics();
 const logoParseURL = 'https://besticon-demo.herokuapp.com/allicons.json?url=';
 
+/**
+ * Search submit handler
+ */
 form?.addEventListener('submit', (event) => {
   event.preventDefault();
   const searchQuery = new FormData(event.target);
@@ -18,31 +21,11 @@ form?.addEventListener('submit', (event) => {
   Analytics.fireEvent('search', { label: 'search', query: searchQuery.get('query') });
 });
 
-chrome.runtime.onMessage.addListener((request) => {
-  if (request.message === 'get_dials_success') {
-    const dials = request.payload;
-    const dialsContainer = document.getElementById('dials');
-    dialsContainer.innerHTML = '';
-    dials.forEach((dial, index) => {
-      const html = `<div data="${index}" class="dial"><img alt="${dial.title} Logo" src="${dial.logo}" class="dial-img" title="${dial.title}" /></div>`;
-      
-      dialsContainer.innerHTML += html;
-    });
+/**
+ * *****************************************************************************
+ */
 
-    document.querySelectorAll('.dial').forEach((dial) => {
-    dial.addEventListener('click', (event) => {
-      event.stopPropagation()
-      const websiteName = event.target.children[0].attributes.title.value;
-      const targetIndex = event.target.attributes.data.value;
-      Analytics.fireEvent('website_click', { label: websiteName, website_url: dials[targetIndex].url });
-      chrome.tabs.getCurrent((tab) => {
-        chrome.tabs.update(tab.id, { url: dials[targetIndex].url });
-      });
-    });
-  });
-  }
-});
-
+// NEW DIAL ADD PART
 function openNewDialAddForm() {
   newDialAddForm.classList.add('active')
 }
@@ -51,6 +34,12 @@ function closeNewDialAddForm() {
   newDialAddForm.classList.remove('active')
 }
 
+/**
+ * 
+ * using heroku app parses link
+ * @param {String} url website url where we want to parse logo
+ * @returns fethed json with icons
+ */
 async function parseLogoFromURL(url) {
   if (!url) {
     console.log('Unable to parse logo. Wrong url!');
@@ -108,6 +97,12 @@ async function newDialSave() {
   }
 }
 
+/**
+ * *****************************************************************************
+ */
+
+// EVENT LISTENERS
+
 document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener('contextmenu', event => event.preventDefault());
   addDialElement.addEventListener('click', () => openNewDialAddForm());
@@ -117,4 +112,29 @@ document.addEventListener("DOMContentLoaded", () => {
   chrome.runtime.sendMessage({
     message: 'getDials'
   });
+});
+
+chrome.runtime.onMessage.addListener((request) => {
+  if (request.message === 'get_dials_success') {
+    const dials = request.payload;
+    const dialsContainer = document.getElementById('dials');
+    dialsContainer.innerHTML = '';
+    dials.forEach((dial, index) => {
+      const html = `<div data="${index}" class="dial"><img alt="${dial.title} Logo" src="${dial.logo}" class="dial-img" title="${dial.title}" /></div>`;
+      
+      dialsContainer.innerHTML += html;
+    });
+
+    document.querySelectorAll('.dial').forEach((dial) => {
+    dial.addEventListener('click', (event) => {
+      event.stopPropagation()
+      const websiteName = event.target.children[0].attributes.title.value;
+      const targetIndex = event.target.attributes.data.value;
+      Analytics.fireEvent('website_click', { label: websiteName, website_url: dials[targetIndex].url });
+      chrome.tabs.getCurrent((tab) => {
+        chrome.tabs.update(tab.id, { url: dials[targetIndex].url });
+      });
+    });
+  });
+  }
 });
